@@ -18,10 +18,6 @@ public:
     /* helper function to add edge */
     void addEdge(int v, int w);
 
-    void pop();
-    void peek() const;
-    bool empty() const;
-
     /* conducts the BFS traversal with starting node s */
     void BFS(int s);
 
