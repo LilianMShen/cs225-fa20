@@ -4,13 +4,22 @@
 #include <queue>
 #include <vector>
 
-BFS::BFS(std::list<Vertex> v) {
-    //vertices = v;
-    //adj = new std::list<int>[vertices];
+BFS::BFS(std::vector<Vertex> v) {
     for (Vertex i : v) {
         vertices.push_back(i);
     }
-    adj = std::map<Vertex, std::list<Vertex>>();
+    adj = std::map<Vertex, std::vector<Vertex>>();
+}
+
+BFS::BFS(std::vector<Vertex> v, std::vector<Edge> e) {
+    for (Vertex i : v) {
+        vertices.push_back(i);
+    }
+
+    adj = std::map<Vertex, std::vector<Vertex>>();
+    for (Edge j : e) {
+        adj[j.source].push_back(j.dest);
+    }
 }
 
 BFS::~BFS() {
@@ -18,8 +27,11 @@ BFS::~BFS() {
 }
 
 void BFS::addEdge(Vertex v, Vertex w) {
-    //adj[v].push_back(w);
     adj[v].push_back(w);
+}
+
+void BFS::addEdge(Edge e) {
+    adj[e.source].push_back(e.dest);
 }
 
 void BFS::start(Vertex s) {
@@ -27,14 +39,6 @@ void BFS::start(Vertex s) {
     for (Vertex i : vertices) {
         isVisited[i] = false;
     }
-    /*
-    bool * visited = new bool[vertices];
-    for (int i = 0; i < vertices; i++) {
-        visited[i] = false;
-    }
-    visited[s] = true;
-    queue.push(s);
-    */
 
     isVisited[s] = true;
     queue.push(s);

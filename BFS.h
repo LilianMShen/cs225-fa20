@@ -10,30 +10,32 @@
 class BFS
 {
 public:
-
-    // alternatively - we can pass in the start point 
-    // with the constructor and save it as a private variable
-
-    // for now i'll be referring to Nodes as ints
-
     /* constructor - takes in # of vertices (nodes) */
-    BFS(std::list<Vertex> vertices);
+    BFS(std::vector<Vertex> v);
+
+    /* second constructor - also takes in a vector of edges */
+    BFS(std::vector<Vertex> v, std::vector<Edge> e);
+
+    /* destructor */
+    ~BFS();
 
     /* helper function to add edge */
     void addEdge(Vertex v, Vertex w);
+    void addEdge(Edge e);
 
     /* conducts the BFS traversal with starting node s */
     void start(Vertex s);
 
 private:
     /* number of vertices */
-    std::list<Vertex> vertices;
+    std::vector<Vertex> vertices;
     //int vertices;
 
     /* Pointer to an array of adjacent vertices */
     //mutable unordered_map<Vertex, unordered_map<Vertex, Edge>> *adj;
     //std::list<Vertex> *adj;
-    std::map<Vertex, std::list<Vertex>> adj;
+    std::map<Vertex, std::vector<Vertex>> adj;
+    //std::vector<Edge> adjacencies;
 
     /* the queue of vertices we will visit */
     std::queue<Vertex> queue;
