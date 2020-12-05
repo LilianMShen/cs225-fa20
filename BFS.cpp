@@ -32,16 +32,19 @@ BFS::~BFS() {
     queue.empty();
 }
 
+ /* helper function to add edge */
 void BFS::addEdge(Vertex v, Vertex w) {
     adj[v].push_back(w);
     adj[w].push_back(v);
 }
 
+ /* helper function to add edge */
 void BFS::addEdge(Edge e) {
     adj[e.source].push_back(e.dest);
     adj[e.dest].push_back(e.source);
 }
 
+/* conducts the BFS traversal with starting node s */
 void BFS::start(Vertex s) {
     std::map<Vertex, bool> isVisited = std::map<Vertex, bool>();
     for (Vertex i : vertices) {
