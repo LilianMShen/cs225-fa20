@@ -4,26 +4,39 @@
 #include <queue>
 #include <vector>
 
-Graph::Graph(int v) {
-    vertices = v;
-    adj = new std::list<int>[vertices];
+BFS::BFS(std::list<Vertex> v) {
+    //vertices = v;
+    //adj = new std::list<int>[vertices];
+    for (Vertex i : v) {
+        vertices.push_back(i);
+    }
+    adj = std::map<Vertex, std::list<Vertex>>();
 }
 
-Graph::~Graph() {
-    delete[] adj;
+BFS::~BFS() {
+    adj.clear();
 }
 
-void Graph::addEdge(int v, int w) {
+void BFS::addEdge(Vertex v, Vertex w) {
+    //adj[v].push_back(w);
     adj[v].push_back(w);
 }
 
-void Graph::BFS(int s) {
+void BFS::start(Vertex s) {
+    std::map<Vertex, bool> isVisited = std::map<Vertex, bool>();
+    for (Vertex i : vertices) {
+        isVisited[i] = false;
+    }
+    /*
     bool * visited = new bool[vertices];
     for (int i = 0; i < vertices; i++) {
         visited[i] = false;
     }
-
     visited[s] = true;
+    queue.push(s);
+    */
+
+    isVisited[s] = true;
     queue.push(s);
 
     std::list<int>::iterator i;
@@ -32,10 +45,10 @@ void Graph::BFS(int s) {
         s = queue.front();
         queue.pop();
 
-        for (i = adj[s].begin(); i != adj[s].end(); ++i) {
-            if (!visited[*i]) {
-                visited[*i] = true;
-                queue.push(*i);
+        for (Vertex i : adj[s]) {
+            if (isVisited[i] == false) {
+                isVisited[i] = true;
+                queue.push(i);
             }
         }
     }
