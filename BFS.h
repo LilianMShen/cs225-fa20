@@ -1,6 +1,6 @@
 
 #include <iostream>
-#include <list>
+#include <vector>
 #include <queue>
 #include <map>
 
@@ -25,6 +25,10 @@ public:
 
     /* conducts the BFS traversal with starting node s */
     void start(Vertex s);
+
+    /* functions for testing purposes exclusively */
+    std::string printVertices();
+    std::string printEdges(Vertex v);
 
 private:
     /* number of vertices */

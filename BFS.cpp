@@ -1,6 +1,5 @@
 #include "BFS.h"
 
-#include <list>
 #include <queue>
 #include <vector>
 
@@ -66,5 +65,24 @@ void BFS::start(Vertex s) {
                 queue.push(i);
             }
         }
+    }
+}
+
+/* functions for testing purposes exclusively */
+std::string BFS::printVertices() {
+    string toReturn = "";
+    for (Vertex v : vertices) {
+        //std::cout << v << " ";
+        toReturn += v + " ";
+    }
+    return toReturn;
+}
+
+/* functions for testing purposes exclusively */
+std::string BFS::printEdges(Vertex v) {
+    string toReturn = "";
+    for (Vertex i : adj[v]) {
+        //std::cout << i << " ";
+        toReturn += v + " goes to " + i + " ";
     }
 }
