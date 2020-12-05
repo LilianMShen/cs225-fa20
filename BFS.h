@@ -29,13 +29,9 @@ public:
 private:
     /* number of vertices */
     std::vector<Vertex> vertices;
-    //int vertices;
 
     /* Pointer to an array of adjacent vertices */
-    //mutable unordered_map<Vertex, unordered_map<Vertex, Edge>> *adj;
-    //std::list<Vertex> *adj;
     std::map<Vertex, std::vector<Vertex>> adj;
-    //std::vector<Edge> adjacencies;
 
     /* the queue of vertices we will visit */
     std::queue<Vertex> queue;
