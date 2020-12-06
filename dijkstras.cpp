@@ -14,6 +14,7 @@ Dijkstras::Dijkstras(vector<vector<string>> data) : g_(false, false) {
         }
         if (g_.edgeExists(data[i][0], data[i][1]) == false) {
             g_.insertEdge(data[i][0], data[i][1]);
+            g_.setEdgeWeight(data[i][0], data[i][1], 0);
         }
     }
 }
