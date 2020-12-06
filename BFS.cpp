@@ -85,4 +85,5 @@ std::string BFS::printEdges(Vertex v) {
         //std::cout << i << " ";
         toReturn += v + " goes to " + i + " ";
     }
+    return toReturn;
 }

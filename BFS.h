@@ -4,8 +4,8 @@
 #include <queue>
 #include <map>
 
-#include "Dijkstras/graph.h"
-#include "Dijkstras/edge.h"
+#include "graph.h"
+#include "edge.h"
 
 class BFS
 {
