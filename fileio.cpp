@@ -1,6 +1,7 @@
 #include "fileio.h"
 #include <sstream>
 
+
 namespace fileio {
 
 std::vector<std::string> file_to_vector(const std::string & file) {
