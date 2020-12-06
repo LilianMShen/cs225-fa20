@@ -1,5 +1,6 @@
 #include "../fileio.h"
-#include "catch/catch_amalgamated.hpp"
+
+#include "../cs225/catch/catch.hpp"
 #include <vector>
 using namespace fileio;
 
