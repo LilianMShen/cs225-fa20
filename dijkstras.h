@@ -13,7 +13,8 @@ class Dijkstras {
         Dijkstras(std::vector<std::vector<std::string>> data);
 
         //Returns a vector of edges that represents the shortest path from Vertex a to b
-        std::vector<Edge> runDijkstras(Vertex a, Vertex b);
+        void runDijkstras(Vertex a, Vertex b);
     private:
         Graph g_;
+        vector<Edge> path_;
 }

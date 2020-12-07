@@ -19,6 +19,22 @@ Dijkstras::Dijkstras(vector<vector<string>> data) : g_(false, false) {
     }
 }
 
-std::vector<Edge> Dijkstras::runDijkstras(Vertex a, Vertex b) {
+ /*
+ Initialize distances
+ Initialize previous (initialize a map that maps current node -> its previous node)
+ initialize priority_queue
+ initialize visited
+
+ while the top of pq is not destination:
+    get current_node from pq
+    for neighbor in current_node's neighbors and not in visited:
+        if update its neighbor's distances:
+            previous[neighbor] = current_node
+    save current_node into visited
+
+extract path from previous
+return path and distance
+ */
+void Dijkstras::runDijkstras(Vertex a, Vertex b) {
     
 }
