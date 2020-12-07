@@ -1,5 +1,6 @@
 #include <queue>
 #include <utility>
+#include <map>
 
 #include "dijkstras.h"
 #include "graph.h"
@@ -20,24 +21,45 @@ Dijkstras::Dijkstras(vector<vector<string>> data) : g_(false, false) {
 }
 
 void Dijkstras::runDijkstras(Vertex a, Vertex b) {
-    const int INF = 0x3f3f3f3f;                             //Defines infinity
-    vector<Vertex> vertices = g_.getVertices();
-    std::priority_queue<pair<int, Vertex>> pq;
-    pq.push(make_pair(0, vertices[0]));
-    for (int v = 0; v < vertices.size() - 1; ++v) {         //Sort by vertex distance with priority queue
-        pq.push(make_pair(INF, vertices[v]));
+    //const int INF = 0x3f3f3f3f;                                 //Defines infinity
+
+    std::map<Vertex, Vertex> previous;
+
+    vector<Vertex> vertices = g_.getVertices();                 
+    std::map<Vertex, bool> visited1;                            //Visited map 1 for creating priority queue
+    std::map<Vertex, bool> visited2;                            //Visited map 2 for when going through priority queue later on
+    for (int v = 0; v < vertices.size() - 1; ++v) {
+        if (vertices[v] != a) {
+            visited1[vertices[v]] = false;
+            visited2[vertices[v]] = false;
+        }
     }
-    vector<pair<int, Vertex>> vectorpq;
-    for (int p = 0; p < pq.size() - 1; ++p) {
-        vectorpq.push_back(pq.top());
-        pq.pop();
+    visited1[a] = true;
+
+    //Creates priority queue
+    std::queue<Vertex> tempQueue;                               //Initializes a setup queue to help initialize priority queue
+    std::queue<Vertex> pq;
+    tempQueue.push(a);
+    while (tempQueue.empty() != true) {
+        Vertex tempVertex = tempQueue.front();
+        pq.push(tempVertex);
+        tempQueue.pop();
+        vector<Vertex> adj = g_.getAdjacent(tempVertex);
+        for (int i = 0; i < adj.size() - 1; ++i) {
+            if (visited1[adj[i]] == false) {
+                visited1[adj[i]] == true;
+                tempQueue.push(adj[i]);
+            }
+        }
     }
+
+    for (int v = 0; v < )
     while (vectorpq.front().second != b) {
         Vertex temp = vectorpq.front().second;
         vectorpq.erase(vectorpq.begin());
-        vector<Edge> adjEdges = g_.getAdjacent(temp);
-        for (int e = 0; e < adjEdges.size() - 1; ++e) {
-            Vertex destination = adjEdges[e].dest;
+        vector<Vertex> adjVertices = g_.getAdjacent(temp);
+        for (int v = 0; v < adjVertices.size() - 1 && visited2[adjVertices[v]] != true; ++v) {
+            Vertex destination = adjVertices[v].dest;
         }
     }
 }
