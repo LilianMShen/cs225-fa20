@@ -28,8 +28,11 @@ void Dijkstras::runDijkstras(Vertex a, Vertex b) {
         pq.push(make_pair(INF, vertices[v]));
     }
     vector<pair<int, Vertex>> vectorpq;
-
-    while (!pq.empty()) {
+    for (int p = 0; p < pq.size() - 1; ++p) {
+        vectorpq.push_back(pq.top());
+        pq.pop();
+    }
+    while (vectorpq.front().second != b) {
         Vertex temp = vectorpq.front().second;
         vectorpq.erase(vectorpq.begin());
         vector<Edge> adjEdges = g_.getAdjacent(temp);
