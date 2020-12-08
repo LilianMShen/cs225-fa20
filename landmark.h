@@ -13,4 +13,5 @@ class Landmark {
 
   private:
     Graph g_;
+    std::vector<Edge> path_;
 }
