@@ -45,8 +45,11 @@ void Dijkstras::Dijkstras_Helper(Vertex a, Vertex b) {
     std::priority_queue<vDistPair, std::vector<vDistPair>, std::greater<vDistPair>> pq;
     pq.push(make_pair(0, a));
 
-    //Initialize visited vertices map
-    std::map<Vertex, bool> visited;
+    //Initialize unordered map of visited/unvisited vertices
+    std::unordered_map<Vertex, bool> visited;
+    for (int v = 0; v < allVertices.size() - 1; ++v) {
+        visited[allVertices[v]] = false;
+    }
 
     //Loops until it reaches destination vertex
     while (pq.top().second != b) {
