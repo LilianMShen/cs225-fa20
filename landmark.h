@@ -17,9 +17,6 @@ class Landmark {
   private:
     Graph g_;
 
-    // Helper function for runLandmarkPath to find a path given a starting and ending vertex
-    std::vector<Edge> findBFSPathToVertex(Vertex start, Vertex end);
-
     // Helper function for runLandmarkPath to get a vector of edges given a map of previous visited vertices
-    std::vector<Edge> getEdgePathFromMap(std::map<Vertex, Vertex> visited);
+    std::vector<Edge> getEdgePathFromMap(std::map<Vertex, Vertex> visited, Vertex current);
 }

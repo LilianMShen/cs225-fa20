@@ -16,36 +16,39 @@ Landmark::Landmark(std::vector<std::vector<std::string>> data) : g_(false, false
 }
 
 std::vector<Edge> Landmark::runLandmarkPath(Vertex start, Vertex end, Vertex landmark) {
-  std::vector<Edge> result;
-  return result;
-}
-
-std::vector<Edge> Landmark::findBFSPathToVertex(Vertex start, Vertex end) {
   std::queue<Vertex> queue;
-  std::map<Vertex, Vertex> visited; // current vertex, predecessor
+  std::map<Vertex, Vertex> visited; // <vertex, predecessor>
+
   std::vector<Edge> result;
+  std::vector<Edge> startPath; // Represents path from start to landmark
+  std::vector<Edge> endPath; // Represents path from landmark to end
 
   // BFS traversal to find path from start to end point
-  queue.push(start);
-  visited[start] = start;
+  queue.push(landmark);
+  visited[landmark] = landmark;
 
   bool foundEndpoint = false;
-  while (!queue.empty() && !foundEndpoint) {
+  bool foundStartpoint = false;
+  while (!queue.empty() && (!foundEndpoint || !foundStartpoint)) {
     Vertex current = queue.front();
     queue.pop();
 
     // Get all adjacent vertices, add to queue if not visited and mark predecessor in map
     std::vector<Vertex> adjacent = g_.getAdjacent(current);
     for (Vertex v : adjacent) {
-      if (v == end) { // Check if vertex is the landmark, if so break
-        result = getEdgePathFromMap(visited);
-        foundEndpoint = true;
-        break;
-      }
-
       if (!visited.contains(v)) {
         queue.push(v);
         visited[v] = current; // set predecessor
+      }
+
+      if (v == end) { // Check if vertex is the endpoint
+        endPath = getEdgePathFromMap(visited, v);
+        foundEndpoint = true;
+      }
+
+      if (v == start) { // Check if vertex is the startpoint
+        startPath = getEdgePathFromMap(visited, v);
+        foundStartpoint = true;
       }
     }
   }
@@ -53,6 +56,6 @@ std::vector<Edge> Landmark::findBFSPathToVertex(Vertex start, Vertex end) {
   return result;
 }
 
-std::vector<Edge> Landmark::getEdgePathFromMap(std::map<Vertex, Vertex> visited) {
+std::vector<Edge> Landmark::getEdgePathFromMap(std::map<Vertex, Vertex> visited, Vertex current) {
 
 }
