@@ -13,4 +13,7 @@ class Landmark {
 
   private:
     Graph g_;
+
+    std::vector<Edge> findBFSPathToVertex(Vertex start, Vertex end);
+    std::vector<Edge> getEdgePathFromMap(std::map<Vertex, Vertex> visited);
 }
