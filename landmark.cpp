@@ -15,6 +15,6 @@ Landmark::Landmark(std::vector<std::vector<std::string>> data) : g_(false, false
   }
 }
 
-void Landmark::runLandmarkPath(Vertex start, Vertex end, Vertex landmark) {
+std::vector<Edge> Landmark::runLandmarkPath(Vertex start, Vertex end, Vertex landmark) {
   
 }
