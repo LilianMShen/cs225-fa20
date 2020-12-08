@@ -2,11 +2,12 @@
 #include <utility>
 #include <map>
 #include <functional>
+#include <sstream>
 
 #include "dijkstras.h"
 #include "graph.h"
 
-Dijkstras::Dijkstras(vector<vector<string>> data) : g_(false, false) {
+Dijkstras::Dijkstras(std::vector<std::vector<std::string>> data) : g_(false, false) {
     for (int i = 0; i < data.size() - 1; ++i) {
         //Inserts all vertices
         if (g_.vertexExists(data[i][0]) == false) {
@@ -15,17 +16,14 @@ Dijkstras::Dijkstras(vector<vector<string>> data) : g_(false, false) {
         if (g_.vertexExists(data[i][1]) == false) {
             g_.insertVertex(data[i][1]);
         }
-        
-        /*
-        Inserts all edges. All edge weights are set to 0 because the data 
-        is unweighted. No section available for weights. The dataset (csv)
-        is parsed through with the fileio code, which returns a vector,
-        which contains vectors each containing a source and destination
-        node, which represent an edge.
-        */
         if (g_.edgeExists(data[i][0], data[i][1]) == false) {
             g_.insertEdge(data[i][0], data[i][1]);
-            g_.setEdgeWeight(data[i][0], data[i][1], 0);
+
+            //Converts weight (string of digits) to integer
+            std::stringstream temp(data[i][2]);
+            int weight = 0;
+            temp >> weight;
+            g_.setEdgeWeight(data[i][0], data[i][1], weight);
         }
     }
 }
@@ -34,17 +32,17 @@ void Dijkstras::Dijkstras_Helper(Vertex a, Vertex b) {
     //Definitions
     const int INF = 0x3f3f3f3f;
     typedef int distance;
-    typedef pair<distance, Vertex> vDistPair;
+    typedef std::pair<distance, Vertex> vDistPair;
 
     //Initializes map of distance for each vertex, all distances set to infinity at start
-    vector<Vertex> allVertices = g_.getVertices();
+    std::vector<Vertex> allVertices = g_.getVertices();
     std::map<Vertex, distance> dist;
     for (int v = 0; v < allVertices.size() - 1; ++v) {
         dist[allVertices[v]] = INF;
     }
 
     //Initialize priority queue (min-heap), with source vertex's distance = 0
-    std::priority_queue<vDistPair, vector<vDistPair>, std::greater<vDistPair>> pq;
+    std::priority_queue<vDistPair, std::vector<vDistPair>, std::greater<vDistPair>> pq;
     pq.push(make_pair(0, a));
 
     //Initialize visited vertices map
@@ -56,7 +54,7 @@ void Dijkstras::Dijkstras_Helper(Vertex a, Vertex b) {
         pq.pop();
 
         //Iterates through each adjacent vertex of the current vertex
-        vector<Vertex> adjVertices = g_.getAdjacent(currVertex);
+        std::vector<Vertex> adjVertices = g_.getAdjacent(currVertex);
         for (int v = 0; v < adjVertices.size() - 1 && visited[adjVertices[v]] != true; ++v) {
             Vertex currAdjVertex = adjVertices[v];
             int currEdgeWeight = g_.getEdgeWeight(currVertex, currAdjVertex);
@@ -69,7 +67,7 @@ void Dijkstras::Dijkstras_Helper(Vertex a, Vertex b) {
     }
 }
 
-vector<Edge> Dijkstras(std::vector<std::vector<std::string>> data, Vertex a, Vertex b) {
+std::vector<Edge> Dijkstras(std::vector<std::vector<std::string>> data, Vertex a, Vertex b) {
     Dijkstras::Dijkstras(data);
     Dijkstras::Dijkstras_Helper(a, b);
 }
