@@ -53,9 +53,11 @@ std::vector<Edge> Landmark::runLandmarkPath(Vertex start, Vertex end, Vertex lan
     }
   }
 
+  // TO DO: Combine endpath vector and startpath vector to create one overall path of edges as result
+
   return result;
 }
 
 std::vector<Edge> Landmark::getEdgePathFromMap(std::map<Vertex, Vertex> visited, Vertex current) {
-
+  
 }
