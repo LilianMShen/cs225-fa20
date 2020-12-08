@@ -59,9 +59,9 @@ void Dijkstras::Dijkstras_Helper(Vertex a, Vertex b) {
         vector<Vertex> adjVertices = g_.getAdjacent(currVertex);
         for (int v = 0; v < adjVertices.size() - 1 && visited[adjVertices[v]] != true; ++v) {
             Vertex currAdjVertex = adjVertices[v];
-            int currAdjWeight = g_.getEdgeWeight(currVertex, currAdjVertex);
-            if (dist[currAdjVertex] > dist[currVertex] + currAdjWeight) {
-                dist[currAdjVertex] = dist[currVertex] + currAdjWeight;
+            int currEdgeWeight = g_.getEdgeWeight(currVertex, currAdjVertex);
+            if (dist[currAdjVertex] > dist[currVertex] + currEdgeWeight) {
+                dist[currAdjVertex] = dist[currVertex] + currEdgeWeight;
                 pq.push(make_pair(dist[currAdjVertex], currAdjVertex));
             }
         }
