@@ -9,7 +9,7 @@
 #include "graph.h"
 
 Dijkstras::Dijkstras(std::vector<std::vector<std::string>> data) : g_(true, false) {
-    for (int i = 0; i < data.size() - 1; ++i) {
+    for (unsigned i = 0; i < data.size(); ++i) {
         //Inserts all vertices
         if (g_.vertexExists(data[i][0]) == false) {
             g_.insertVertex(data[i][0]);
@@ -38,7 +38,7 @@ std::vector<Edge> Dijkstras::Dijkstras_Helper(Vertex a, Vertex b) {
     //Initializes map of distance for each vertex, all distances set to infinity at start
     std::vector<Vertex> allVertices = g_.getVertices();
     std::unordered_map<Vertex, distance> dist;
-    for (int v = 0; v < allVertices.size(); ++v) {
+    for (unsigned v = 0; v < allVertices.size(); ++v) {
         dist[allVertices[v]] = INF;
     }
     dist[a] = 0;
@@ -52,7 +52,7 @@ std::vector<Edge> Dijkstras::Dijkstras_Helper(Vertex a, Vertex b) {
 
     //Initialize unordered map of visited/unvisited vertices
     std::unordered_map<Vertex, bool> visited;
-    for (int v = 0; v < allVertices.size(); ++v) {
+    for (unsigned v = 0; v < allVertices.size(); ++v) {
         visited[allVertices[v]] = false;
     }
 
@@ -63,7 +63,7 @@ std::vector<Edge> Dijkstras::Dijkstras_Helper(Vertex a, Vertex b) {
 
         //Iterates through each adjacent vertex of the current vertex
         std::vector<Vertex> adjVertices = g_.getAdjacent(currVertex);
-        for (int v = 0; v < adjVertices.size() && visited[adjVertices[v]] != true; ++v) {
+        for (unsigned v = 0; v < adjVertices.size() && visited[adjVertices[v]] != true; ++v) {
             Vertex adjVertex = adjVertices[v];
             int edgeWeight = g_.getEdgeWeight(currVertex, adjVertex);
             if (dist[adjVertex] > dist[currVertex] + edgeWeight) {
@@ -79,12 +79,16 @@ std::vector<Edge> Dijkstras::Dijkstras_Helper(Vertex a, Vertex b) {
     vector<Edge> path;
     for (Vertex curr = a; curr != b; curr = next[curr]) {
         int weight = g_.getEdgeWeight(curr, next[curr]);
-        path.push_back(Edge(curr, next[curr], weight, curr + "-" + next[curr]);
+        path.push_back(Edge(curr, next[curr], weight, curr + "-" + next[curr]));
     }
     return path;
 }
 
-std::vector<Edge> Dijkstras(std::vector<std::vector<std::string>> data, Vertex a, Vertex b) {
+/*std::vector<Edge> runDijkstras(std::vector<std::vector<std::string>> data, Vertex a, Vertex b) {
     Dijkstras::Dijkstras(data);
     Dijkstras::Dijkstras_Helper(a, b);
+}*/
+
+Graph Dijkstras::getGraph() {
+    return g_;
 }
