@@ -3,11 +3,12 @@
 #include <map>
 #include <functional>
 #include <sstream>
+#include <string>
 
 #include "dijkstras.h"
 #include "graph.h"
 
-Dijkstras::Dijkstras(std::vector<std::vector<std::string>> data) : g_(false, false) {
+Dijkstras::Dijkstras(std::vector<std::vector<std::string>> data) : g_(true, false) {
     for (int i = 0; i < data.size() - 1; ++i) {
         //Inserts all vertices
         if (g_.vertexExists(data[i][0]) == false) {
@@ -28,7 +29,7 @@ Dijkstras::Dijkstras(std::vector<std::vector<std::string>> data) : g_(false, fal
     }
 }
 
-void Dijkstras::Dijkstras_Helper(Vertex a, Vertex b) {
+std::vector<Edge> Dijkstras::Dijkstras_Helper(Vertex a, Vertex b) {
     //Definitions
     const int INF = 0x3f3f3f3f;
     typedef int distance;
@@ -36,10 +37,14 @@ void Dijkstras::Dijkstras_Helper(Vertex a, Vertex b) {
 
     //Initializes map of distance for each vertex, all distances set to infinity at start
     std::vector<Vertex> allVertices = g_.getVertices();
-    std::map<Vertex, distance> dist;
-    for (int v = 0; v < allVertices.size() - 1; ++v) {
+    std::unordered_map<Vertex, distance> dist;
+    for (int v = 0; v < allVertices.size(); ++v) {
         dist[allVertices[v]] = INF;
     }
+    dist[a] = 0;
+
+    //Initialize a map that maps current node to its previous node.
+    std::unordered_map<Vertex, Vertex> next = { {a, ""} };
 
     //Initialize priority queue (min-heap), with source vertex's distance = 0
     std::priority_queue<vDistPair, std::vector<vDistPair>, std::greater<vDistPair>> pq;
@@ -47,7 +52,7 @@ void Dijkstras::Dijkstras_Helper(Vertex a, Vertex b) {
 
     //Initialize unordered map of visited/unvisited vertices
     std::unordered_map<Vertex, bool> visited;
-    for (int v = 0; v < allVertices.size() - 1; ++v) {
+    for (int v = 0; v < allVertices.size(); ++v) {
         visited[allVertices[v]] = false;
     }
 
@@ -58,16 +63,25 @@ void Dijkstras::Dijkstras_Helper(Vertex a, Vertex b) {
 
         //Iterates through each adjacent vertex of the current vertex
         std::vector<Vertex> adjVertices = g_.getAdjacent(currVertex);
-        for (int v = 0; v < adjVertices.size() - 1 && visited[adjVertices[v]] != true; ++v) {
-            Vertex currAdjVertex = adjVertices[v];
-            int currEdgeWeight = g_.getEdgeWeight(currVertex, currAdjVertex);
-            if (dist[currAdjVertex] > dist[currVertex] + currEdgeWeight) {
-                dist[currAdjVertex] = dist[currVertex] + currEdgeWeight;
-                pq.push(make_pair(dist[currAdjVertex], currAdjVertex));
+        for (int v = 0; v < adjVertices.size() && visited[adjVertices[v]] != true; ++v) {
+            Vertex adjVertex = adjVertices[v];
+            int edgeWeight = g_.getEdgeWeight(currVertex, adjVertex);
+            if (dist[adjVertex] > dist[currVertex] + edgeWeight) {
+                dist[adjVertex] = dist[currVertex] + edgeWeight;
+                pq.push(make_pair(dist[adjVertex], adjVertex));
+                next[currVertex] = adjVertex;
             }
         }
         visited[currVertex] = true;
     }
+
+    //Extracts shortest path from previous map
+    vector<Edge> path;
+    for (Vertex curr = a; curr != b; curr = next[curr]) {
+        int weight = g_.getEdgeWeight(curr, next[curr]);
+        path.push_back(Edge(curr, next[curr], weight, curr + "-" + next[curr]);
+    }
+    return path;
 }
 
 std::vector<Edge> Dijkstras(std::vector<std::vector<std::string>> data, Vertex a, Vertex b) {
