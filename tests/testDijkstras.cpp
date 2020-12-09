@@ -45,3 +45,10 @@ TEST_CASE("test_dijkstras_constructor_weights", "[dijkstras]") {
     REQUIRE(graph.getEdgeWeight("7", "6") == 51);
     REQUIRE(graph.getEdgeWeight("8", "6") == 1);
 }
+
+vector<Edge> path = test.Dijkstras_Helper("1", "8");
+
+TEST_CASE("test_dijkstras_1", "[dijkstras]") {
+    REQUIRE(path[1].getLabel() == "1-3");
+    REQUIRE(path[1].getWeight() == 21);
+}

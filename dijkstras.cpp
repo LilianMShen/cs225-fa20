@@ -57,7 +57,7 @@ std::vector<Edge> Dijkstras::Dijkstras_Helper(Vertex a, Vertex b) {
     }
 
     //Loops until it reaches destination vertex
-    while (pq.top().second != b) {
+    while (pq.empty() == false && pq.top().second != b) {
         Vertex currVertex = pq.top().second;
         pq.pop();
 
