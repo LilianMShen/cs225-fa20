@@ -82,6 +82,7 @@ std::vector<Edge> Dijkstras::Dijkstras_Helper(Vertex a, Vertex b) {
         }
         visited[currVertex] = true;
     }
+    std::cout<<"Search complete! Extracting path..."<<endl;
 
     //Extracts shortest path from previous map
     vector<Edge> path;
