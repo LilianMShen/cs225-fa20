@@ -45,7 +45,7 @@ std::vector<Edge> Dijkstras::Dijkstras_Helper(Vertex a, Vertex b) {
     dist[a] = 0;
 
     //Initialize a map that maps current node to its previous node.
-    std::unordered_map<Vertex, Vertex> next = { {a, ""} };
+    std::unordered_map<Vertex, Vertex> prev;
 
     //Initialize priority queue (min-heap), with source vertex's distance = 0
     std::priority_queue<vDistPair, std::vector<vDistPair>, std::greater<vDistPair>> pq;
@@ -76,7 +76,7 @@ std::vector<Edge> Dijkstras::Dijkstras_Helper(Vertex a, Vertex b) {
                 if (dist[adjVertex] > dist[currVertex] + edgeWeight) {
                     dist[adjVertex] = dist[currVertex] + edgeWeight;
                     pq.push(make_pair(dist[adjVertex], adjVertex));
-                    next[currVertex] = adjVertex;
+                    prev[adjVertex] = currVertex;
                 }
             }
         }
@@ -86,18 +86,24 @@ std::vector<Edge> Dijkstras::Dijkstras_Helper(Vertex a, Vertex b) {
 
     //Extracts shortest path from previous map
     vector<Edge> path;
-    /*for (Vertex curr = a; curr != b; curr = next[curr]) {
-        int weight = g_.getEdgeWeight(curr, next[curr]);
-        path.push_back(Edge(curr, next[curr], weight, curr + "-" + next[curr]));
-    }*/
-    path.push_back(Edge("a", "v"));
+    Vertex curr = b;
+    Vertex currprev = prev[curr];
+    int weight = 0;
+    for (curr = b; curr != a; curr = prev[curr]) {
+        weight = g_.getEdgeWeight(prev[curr], curr);
+        std::vector<Edge>::iterator it = path.begin();
+        it = path.insert(it, Edge(prev[curr], curr, weight, prev[curr] + "-" + curr));
+    }
+    for (unsigned i = 0; i < path.size(); ++i) {
+        std::cout<<path[i].getLabel()<<endl;
+    }
     return path;
 }
 
-/*std::vector<Edge> runDijkstras(std::vector<std::vector<std::string>> data, Vertex a, Vertex b) {
-    Dijkstras::Dijkstras(data);
-    Dijkstras::Dijkstras_Helper(a, b);
-}*/
+std::vector<Edge> runDijkstras(std::vector<std::vector<std::string>> data, Vertex a, Vertex b) {
+    Dijkstras dijkstras = Dijkstras(data);
+    return dijkstras.Dijkstras_Helper(a, b);
+}
 
 Graph Dijkstras::getGraph() {
     return g_;

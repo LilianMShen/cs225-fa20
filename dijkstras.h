@@ -16,7 +16,7 @@ class Dijkstras {
         std::vector<Edge> Dijkstras_Helper(Vertex a, Vertex b);
 
         //Main Dijkstras function, condenses the helper functions
-        //std::vector<Edge> runDijkstras(std::vector<std::vector<std::string>> data, Vertex a, Vertex b);
+        std::vector<Edge> runDijkstras(std::vector<std::vector<std::string>> data, Vertex a, Vertex b);
 
         //Graph getter
         Graph getGraph();
