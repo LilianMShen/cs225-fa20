@@ -55,11 +55,13 @@ std::vector<Edge> Landmark::runLandmarkPath(Vertex start, Vertex end, Vertex lan
 
   // Add start path edges to result
   for (Edge e : startPath) {
+    std::cout << e.getLabel() << std::endl;
     result.push_back(e);
   }
 
   // Add ending path edges to result
   for (int i = endPath.size() - 1; i >= 0; i--) {
+    std::cout << endPath[i].getLabel() << std::endl;
     result.push_back(endPath[i]);
   }
 
@@ -71,7 +73,7 @@ std::vector<Edge> Landmark::getEdgePathFromMap(std::map<Vertex, Vertex> visited,
 
   Vertex curr = current;
   while (visited[curr] != curr) { // For a vertex without a predecessor (vertex at start of traversal), stores itself as predecessor
-    result.push_back(Edge(visited[curr], curr)); // Add edge from current Vertex and predecessor Vertex
+    result.push_back(Edge(visited[curr], curr, visited[curr] + "-" + curr)); // Add edge from current Vertex and predecessor Vertex
     curr = visited[curr]; // Set current edge to predecessor vertex
   }
 
