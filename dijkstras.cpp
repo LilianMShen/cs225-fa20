@@ -4,6 +4,7 @@
 #include <functional>
 #include <sstream>
 #include <string>
+#include <iostream>
 
 #include "dijkstras.h"
 #include "graph.h"
@@ -56,20 +57,27 @@ std::vector<Edge> Dijkstras::Dijkstras_Helper(Vertex a, Vertex b) {
         visited[allVertices[v]] = false;
     }
 
-    //Loops until it reaches destination vertex
-    while (pq.empty() == false && pq.top().second != b) {
+    //Loops until it reaches destination vertex pq.empty() == false && 
+    while (pq.top().second != b) {
         Vertex currVertex = pq.top().second;
         pq.pop();
+        std::cout<<"Current Vertex: " + currVertex<<endl;
 
         //Iterates through each adjacent vertex of the current vertex
         std::vector<Vertex> adjVertices = g_.getAdjacent(currVertex);
-        for (unsigned v = 0; v < adjVertices.size() && visited[adjVertices[v]] != true; ++v) {
-            Vertex adjVertex = adjVertices[v];
-            int edgeWeight = g_.getEdgeWeight(currVertex, adjVertex);
-            if (dist[adjVertex] > dist[currVertex] + edgeWeight) {
-                dist[adjVertex] = dist[currVertex] + edgeWeight;
-                pq.push(make_pair(dist[adjVertex], adjVertex));
-                next[currVertex] = adjVertex;
+        for (unsigned v = 0; v < adjVertices.size(); ++v) {
+            if (visited[adjVertices[v]] == true) {
+                continue;
+            }
+            else {
+                Vertex adjVertex = adjVertices[v];
+                std::cout<<"Checking neighbor " + adjVertex + "..."<<endl;
+                int edgeWeight = g_.getEdgeWeight(currVertex, adjVertex);
+                if (dist[adjVertex] > dist[currVertex] + edgeWeight) {
+                    dist[adjVertex] = dist[currVertex] + edgeWeight;
+                    pq.push(make_pair(dist[adjVertex], adjVertex));
+                    next[currVertex] = adjVertex;
+                }
             }
         }
         visited[currVertex] = true;
@@ -77,10 +85,11 @@ std::vector<Edge> Dijkstras::Dijkstras_Helper(Vertex a, Vertex b) {
 
     //Extracts shortest path from previous map
     vector<Edge> path;
-    for (Vertex curr = a; curr != b; curr = next[curr]) {
+    /*for (Vertex curr = a; curr != b; curr = next[curr]) {
         int weight = g_.getEdgeWeight(curr, next[curr]);
         path.push_back(Edge(curr, next[curr], weight, curr + "-" + next[curr]));
-    }
+    }*/
+    path.push_back(Edge("a", "v"));
     return path;
 }
 

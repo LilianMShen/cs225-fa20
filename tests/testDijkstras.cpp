@@ -49,6 +49,6 @@ TEST_CASE("test_dijkstras_constructor_weights", "[dijkstras]") {
 vector<Edge> path = test.Dijkstras_Helper("1", "8");
 
 TEST_CASE("test_dijkstras_1", "[dijkstras]") {
+    REQUIRE(path[0].getWeight() == 21);
     REQUIRE(path[1].getLabel() == "1-3");
-    REQUIRE(path[1].getWeight() == 21);
 }
