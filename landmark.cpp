@@ -59,5 +59,13 @@ std::vector<Edge> Landmark::runLandmarkPath(Vertex start, Vertex end, Vertex lan
 }
 
 std::vector<Edge> Landmark::getEdgePathFromMap(std::map<Vertex, Vertex> visited, Vertex current) {
-  
+  std::vector<Edge> result;
+
+  // iterate through the map, stopping when we reach the current vertex
+  for (std::map<Vertex, Vertex>::iterator curr = visited.begin(); curr->first != current; ++curr) {
+    // make an edge
+    result.push_back(Edge(curr->first, curr->second));
+  }
+
+  return result;
 }
