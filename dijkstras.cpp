@@ -22,10 +22,15 @@ Dijkstras::Dijkstras(std::vector<std::vector<std::string>> data) : g_(true, fals
             g_.insertEdge(data[i][0], data[i][1]);
 
             //Converts weight (string of digits) to integer
-            std::stringstream temp(data[i][2]);
-            int weight = 0;
-            temp >> weight;
-            g_.setEdgeWeight(data[i][0], data[i][1], weight);
+            if (data.size() == 3) {
+                std::stringstream temp(data[i][2]);
+                int weight = 0;
+                temp >> weight;
+                g_.setEdgeWeight(data[i][0], data[i][1], weight);
+            }
+            else {
+                g_.setEdgeWeight(data[i][0], data[i][1], 1);
+            }
         }
     }
 }
