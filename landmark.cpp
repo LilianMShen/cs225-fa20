@@ -71,8 +71,8 @@ std::vector<Edge> Landmark::getEdgePathFromMap(std::map<Vertex, Vertex> visited,
 
   Vertex curr = current;
   while (visited[curr] != curr) { // For a vertex without a predecessor (vertex at start of traversal), stores itself as predecessor
-    result.push_back(Edge(visited[curr], curr));
-    curr = visited[curr];
+    result.push_back(Edge(visited[curr], curr)); // Add edge from current Vertex and predecessor Vertex
+    curr = visited[curr]; // Set current edge to predecessor vertex
   }
 
   // With current implementation, path is returned in backward order
