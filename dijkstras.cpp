@@ -22,7 +22,7 @@ Dijkstras::Dijkstras(std::vector<std::vector<std::string>> data) : g_(true, fals
             g_.insertEdge(data[i][0], data[i][1]);
 
             //Converts weight (string of digits) to integer
-            if (data.size() == 3) {
+            if (data[i].size() == 3) {
                 std::stringstream temp(data[i][2]);
                 int weight = 0;
                 temp >> weight;
@@ -67,7 +67,7 @@ std::vector<Edge> Dijkstras::Dijkstras_Helper(Vertex a, Vertex b) {
         Vertex currVertex = pq.top().second;
         pq.pop();
 
-        std::cout<<"Current Vertex: " + currVertex<<endl;
+        //std::cout<<"Current Vertex: " + currVertex<<endl;
 
         //Iterates through each adjacent vertex of the current vertex
         std::vector<Vertex> adjVertices = g_.getAdjacent(currVertex);
@@ -78,7 +78,7 @@ std::vector<Edge> Dijkstras::Dijkstras_Helper(Vertex a, Vertex b) {
             else {
                 Vertex adjVertex = adjVertices[v];
 
-                std::cout<<"Checking neighbor " + adjVertex + "..."<<endl;
+                //std::cout<<"Checking neighbor " + adjVertex + "..."<<endl;
                 
                 int edgeWeight = g_.getEdgeWeight(currVertex, adjVertex);
                 if (dist[adjVertex] > dist[currVertex] + edgeWeight) {
