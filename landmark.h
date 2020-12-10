@@ -14,6 +14,8 @@ class Landmark {
     // Runs the landmark path algorithm
     std::vector<Edge> runLandmarkPath(Vertex start, Vertex end, Vertex landmark);
 
+    //Getter for graph
+    Graph getGraph();
   private:
     Graph g_;
 

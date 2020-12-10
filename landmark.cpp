@@ -1,7 +1,7 @@
 #include "landmark.h"
 
 Landmark::Landmark(std::vector<std::vector<std::string>> data) : g_(false, false) {
-  for (size_t i = 0; i < data.size() - 1; ++i) {
+  for (size_t i = 0; i < data.size(); ++i) {
     if (g_.vertexExists(data[i][0]) == false) {
       g_.insertVertex(data[i][0]);
     }
@@ -77,4 +77,8 @@ std::vector<Edge> Landmark::getEdgePathFromMap(std::map<Vertex, Vertex> visited,
 
   // With current implementation, path is returned in backward order
   return result;
+}
+
+Graph Landmark::getGraph() {
+  return g_;
 }
