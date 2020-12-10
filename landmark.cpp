@@ -55,11 +55,13 @@ std::vector<Edge> Landmark::runLandmarkPath(Vertex start, Vertex end, Vertex lan
 
   // Add start path edges to result
   for (Edge e : startPath) {
+    std::cout << e.getLabel() << std::endl;
     result.push_back(e);
   }
 
   // Add ending path edges to result
   for (int i = endPath.size() - 1; i >= 0; i--) {
+    std::cout << endPath[i].getLabel() << std::endl;
     result.push_back(endPath[i]);
   }
 
