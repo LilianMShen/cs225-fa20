@@ -61,6 +61,7 @@ std::vector<Edge> Dijkstras::Dijkstras_Helper(Vertex a, Vertex b) {
     while (pq.top().second != b) {
         Vertex currVertex = pq.top().second;
         pq.pop();
+
         std::cout<<"Current Vertex: " + currVertex<<endl;
 
         //Iterates through each adjacent vertex of the current vertex
@@ -71,7 +72,9 @@ std::vector<Edge> Dijkstras::Dijkstras_Helper(Vertex a, Vertex b) {
             }
             else {
                 Vertex adjVertex = adjVertices[v];
+
                 std::cout<<"Checking neighbor " + adjVertex + "..."<<endl;
+                
                 int edgeWeight = g_.getEdgeWeight(currVertex, adjVertex);
                 if (dist[adjVertex] > dist[currVertex] + edgeWeight) {
                     dist[adjVertex] = dist[currVertex] + edgeWeight;
