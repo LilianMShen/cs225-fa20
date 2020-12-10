@@ -40,3 +40,13 @@ TEST_CASE("test_landmark_path", "[landmark]") {
   REQUIRE(testPath[1].getLabel() == "0-2");
   REQUIRE(testPath[2].getLabel() == "2-5");
 }
+
+TEST_CASE("test_landmark_path2", "[landmark]") {
+  std::vector<Edge> testPath = test.runLandmarkPath("4", "7", "6");
+  REQUIRE(testPath.size() == 5);
+  REQUIRE(testPath[0].getLabel() == "2-4");
+  REQUIRE(testPath[1].getLabel() == "5-2");
+  REQUIRE(testPath[2].getLabel() == "6-5");
+  REQUIRE(testPath[3].getLabel() == "6-5");
+  REQUIRE(testPath[4].getLabel() == "5-7");
+}
