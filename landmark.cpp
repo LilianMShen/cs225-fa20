@@ -53,7 +53,15 @@ std::vector<Edge> Landmark::runLandmarkPath(Vertex start, Vertex end, Vertex lan
     }
   }
 
-  // TO DO: Combine endpath vector and startpath vector to create one overall path of edges as result
+  // Add start path edges to result
+  for (Edge e : startPath) {
+    result.push_back(e);
+  }
+
+  // Add ending path edges to result
+  for (int i = endPath.size() - 1; i >= 0; i--) {
+    result.push_back(endPath[i]);
+  }
 
   return result;
 }
@@ -61,11 +69,12 @@ std::vector<Edge> Landmark::runLandmarkPath(Vertex start, Vertex end, Vertex lan
 std::vector<Edge> Landmark::getEdgePathFromMap(std::map<Vertex, Vertex> visited, Vertex current) {
   std::vector<Edge> result;
 
-  // iterate through the map, stopping when we reach the current vertex
-  for (std::map<Vertex, Vertex>::iterator curr = visited.begin(); curr->first != current; ++curr) {
-    // make an edge
-    result.push_back(Edge(curr->first, curr->second));
+  Vertex curr = current;
+  while (visited[curr] != curr) { // For a vertex without a predecessor (vertex at start of traversal), stores itself as predecessor
+    result.push_back(Edge(visited[curr], curr));
+    curr = visited[curr];
   }
 
+  // With current implementation, path is returned in backward order
   return result;
 }
