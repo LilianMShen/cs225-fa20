@@ -16,7 +16,7 @@ TEST_CASE("test_basic_tokenization", "[fileio]") {
     std::vector<std::vector<std::string>> tokens = csv_to_tokens(lines);
     REQUIRE(tokens[0][0] == "this");
     REQUIRE(tokens[0][1] == "is");
-    REQUIRE(tokens[0][2] == "a");
+    REQUIRE(tokens[0][2] == "the");
     REQUIRE(tokens[0][3] == "test");
 }
 
