@@ -1,7 +1,7 @@
 #include "landmark.h"
 
 Landmark::Landmark(std::vector<std::vector<std::string>> data) : g_(false, false) {
-  for (int i = 0; i < data.size() - 1; ++i) {
+  for (size_t i = 0; i < data.size() - 1; ++i) {
     if (g_.vertexExists(data[i][0]) == false) {
       g_.insertVertex(data[i][0]);
     }
@@ -36,7 +36,7 @@ std::vector<Edge> Landmark::runLandmarkPath(Vertex start, Vertex end, Vertex lan
     // Get all adjacent vertices, add to queue if not visited and mark predecessor in map
     std::vector<Vertex> adjacent = g_.getAdjacent(current);
     for (Vertex v : adjacent) {
-      if (!visited.contains(v)) {
+      if (visited.count(v) < 1) {
         queue.push(v);
         visited[v] = current; // set predecessor
       }

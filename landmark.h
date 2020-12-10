@@ -19,4 +19,4 @@ class Landmark {
 
     // Helper function for runLandmarkPath to get a vector of edges given a map of previous visited vertices
     std::vector<Edge> getEdgePathFromMap(std::map<Vertex, Vertex> visited, Vertex current);
-}
+};

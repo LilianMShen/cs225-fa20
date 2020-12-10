@@ -1,6 +1,6 @@
 #include "../cs225/catch/catch.hpp"
 
-#include "landmark.h"
+#include "../landmark.h"
 
 #include <vector>
 #include <string>
