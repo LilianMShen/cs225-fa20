@@ -1,5 +1,6 @@
 #include "../cs225/catch/catch.hpp"
 #include "../dijkstras.h"
+#include "../fileio.h"
 
 #include <vector>
 #include <string>
@@ -115,4 +116,16 @@ TEST_CASE("test_dijkstras_AIO", "[dijkstras]") {
 
     REQUIRE(path_4[0].getLabel() == "0-1");
     REQUIRE(path_4[1].getLabel() == "1-3");
+}
+
+//Dataset test
+TEST_CASE("test_dijkstras_dataset", "[dijkstras]") {
+    std::vector<std::string> predata = fileio::file_to_vector("tests/data/musae_ENGB_edges.csv");
+    std::vector<std::vector<std::string>> afterdata = fileio::csv_to_tokens(predata);
+
+    Dijkstras test_5 = Dijkstras(afterdata);
+    Graph graph_5 = test_5.getGraph();
+    vector<Edge> path_5 = test_5.Dijkstras_Helper("15", "6592");
+
+    REQUIRE(graph_5.vertexExists("15"));
 }
