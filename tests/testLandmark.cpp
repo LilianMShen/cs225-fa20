@@ -32,3 +32,11 @@ TEST_CASE("test_landmark_constructor_vertices_edges", "[landmark]") {
     REQUIRE(graph.edgeExists("5", "6") == true);
     REQUIRE(graph.edgeExists("5", "7") == true);
 }
+
+TEST_CASE("test_landmark_path", "[landmark]") {
+  std::vector<Edge> testPath = test.runLandmarkPath("1", "5", "0");
+  REQUIRE(testPath.size() == 3);
+  REQUIRE(testPath[0].getLabel() == "0-1");
+  REQUIRE(testPath[1].getLabel() == "0-2");
+  REQUIRE(testPath[2].getLabel() == "2-5");
+}
