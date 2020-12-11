@@ -1,6 +1,6 @@
 #include "../cs225/catch/catch.hpp"
-
 #include "../landmark.h"
+#include "../fileio.h"
 
 #include <vector>
 #include <string>
@@ -49,4 +49,17 @@ TEST_CASE("test_landmark_path2", "[landmark]") {
   REQUIRE(testPath[2].getLabel() == "6-5");
   REQUIRE(testPath[3].getLabel() == "6-5");
   REQUIRE(testPath[4].getLabel() == "5-7");
+}
+
+TEST_CASE("test_landmark_dataset", "[dijkstras]") {
+  std::vector<std::string> predata = fileio::file_to_vector("tests/data/musae_ENGB_edges.csv");
+  std::vector<std::vector<std::string>> afterdata = fileio::csv_to_tokens(predata);
+
+  Landmark dataTest = Landmark(afterdata);
+  std::vector<Edge> testPath;
+  Graph testGraph = dataTest.getGraph();
+
+  vector<Edge> path = dataTest.runLandmarkPath("15", "581", "15");
+
+  REQUIRE(testGraph.vertexExists("15"));
 }
