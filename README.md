@@ -14,7 +14,7 @@ All testing and running of our code can be done within the individual test case 
 
 ## Dijkstra's Implementation
 ### Files: dijkstras.h/cpp
-For each dataset/graph, create a new dijkstras object with the constructor and input data using the fileio namespace. The test cases are examples for running the code. Use the all-in-one function ***runDijkstras*** if you only want the path (vector of Edges). If you want to see the current vertices (including adjacent vertices) being visited, uncomment the print statements in dijkstras.cpp. More information can be found in the ***testDijkstras.cpp***.
+For each dataset/graph, create a new dijkstras object with the constructor and input data using the fileio namespace. The test cases are examples for running the code. Use the all-in-one function ***runDijkstras*** if you only want the path (vector of Edges). The ***Dijkstras_Helper*** function (and therefore ***runDijkstras***) will print the shortest path for you. If you want to see the current vertices (including adjacent vertices) being visited, uncomment the print statements in dijkstras.cpp. More information can be found in the ***testDijkstras.cpp***.
 
 IMPORTANT: The dataset we used is unweighted. If you want to test for weighted graphs, input the data like the dataset but with the weight after it: **Vertex,Vertex,Weight**, with each component being a string of digits if data is hardcoded in the test file. Examples are given in the test file.
 
