@@ -125,7 +125,9 @@ TEST_CASE("test_dijkstras_dataset", "[dijkstras]") {
 
     Dijkstras test_5 = Dijkstras(afterdata);
     Graph graph_5 = test_5.getGraph();
-    vector<Edge> path_5 = test_5.Dijkstras_Helper("15", "6592");
+
+    //optional route of 15 -> 343 -> 6592 -> 581
+    vector<Edge> path_5 = test_5.Dijkstras_Helper("15", "581");
 
     REQUIRE(graph_5.vertexExists("15"));
 }
