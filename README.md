@@ -4,6 +4,8 @@ Contributors: Daniel Bargon, Spenser Fong, Justin Kim, Lilian Shen
 ## Overview
 Our project looks at the musae-twitch dataset obtained from http://snap.stanford.edu/data/twitch-social-networks.html. The undirected, unweighted dataset is given through a CSV file, and the data format is **Vertex,Vertex**, representing edges formed from 2 vertices, which are digits. Our goal was to simulate the logic behind the follow/subscription recommendation system in the Twitch network.
 
+Our presentation video: https://mediaspace.illinois.edu/media/1_yxuh7zqk
+
 All testing and running of our code can be done within the individual test case files, located in the tests folder. The musae-twitch dataset, as well as other data used for testing, can be found in */tests/data*.
 - - - -
 ## Fileio
