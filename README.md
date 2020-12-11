@@ -1,12 +1,12 @@
 # CS 225 Fall 2020 Final Project
 Contributors: Daniel Bargon, Spenser Fong, Justin Kim, Lilian Shen
 
-All testing can be done within the individual test case files, located in the tests folder. The musae-twitch dataset, as well as other data used for testing, can be found in /tests/data.
+All testing and running of our code can be done within the individual test case files, located in the tests folder. The musae-twitch dataset, as well as other data used for testing, can be found in /tests/data.
 
 ## Fileio
 ### Files: fileio.h/cpp
 
-## BFS
+## Breadth First Search (BFS)
 ### Files: BFS.h/cpp
 
 ## Dijkstra's Implementation
