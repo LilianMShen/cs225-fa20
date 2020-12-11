@@ -2,7 +2,7 @@
 Contributors: Daniel Bargon, Spenser Fong, Justin Kim, Lilian Shen
 
 ## Overview
-Our project looks at the musae-twitch dataset obtained from http://snap.stanford.edu/data/. Our goal was to simulate the logic behind the follow/subscription recommendation system in the Twitch network.
+Our project looks at the musae-twitch dataset obtained from http://snap.stanford.edu/data/. The undirected, unweighted dataset is given through a CSV file, and the data format is **Vertex,Vertex**, representing edges. Our goal was to simulate the logic behind the follow/subscription recommendation system in the Twitch network.
 
 All testing and running of our code can be done within the individual test case files, located in the tests folder. The musae-twitch dataset, as well as other data used for testing, can be found in /tests/data.
 
@@ -14,7 +14,7 @@ All testing and running of our code can be done within the individual test case 
 
 ## Dijkstra's Implementation
 ### Files: dijkstras.h/cpp
-For each dataset/graph, create a new dijkstras object with the constructor and input data using the fileio namespace. The test cases are examples for running the code. Use the all-in-one function _**runDijkstras**_ if you only want the path (vector of Edges). If you want to see the current vertices (including adjacent vertices) being visited, uncomment the print statements in dijkstras.cpp. More information can be found in the _**testDijkstras.cpp**_.
+For each dataset/graph, create a new dijkstras object with the constructor and input data using the fileio namespace. The test cases are examples for running the code. Use the all-in-one function ***runDijkstras*** if you only want the path (vector of Edges). If you want to see the current vertices (including adjacent vertices) being visited, uncomment the print statements in dijkstras.cpp. More information can be found in the ***testDijkstras.cpp***.
 
 ## Landmark Path Implementation
 ### Files: landmark.h/cpp
