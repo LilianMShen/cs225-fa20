@@ -51,7 +51,7 @@ TEST_CASE("test_landmark_path2", "[landmark]") {
   REQUIRE(testPath[4].getLabel() == "5-7");
 }
 
-TEST_CASE("test_landmark_dataset", "[dijkstras]") {
+TEST_CASE("test_landmark_dataset", "[landmark]") {
   std::vector<std::string> predata = fileio::file_to_vector("tests/data/musae_ENGB_edges.csv");
   std::vector<std::vector<std::string>> afterdata = fileio::csv_to_tokens(predata);
 
