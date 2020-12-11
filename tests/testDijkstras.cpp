@@ -138,5 +138,7 @@ TEST_CASE("test_dijkstras_dataset", "[dijkstras]") {
     //optional route of 15 -> 343 -> 6592 -> 581
     vector<Edge> path_5 = test_5.Dijkstras_Helper("15", "581");
 
-    REQUIRE(graph_5.vertexExists("15"));
+    REQUIRE(path_5.size() == 2);
+    REQUIRE(graph_5.edgeExists("15", "3401"));
+    REQUIRE(graph_5.edgeExists("3401", "581"));
 }
