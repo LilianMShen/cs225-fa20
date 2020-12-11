@@ -5,6 +5,15 @@
 #include <vector>
 #include <string>
 
+/*
+README
+
+If you want to see all the vertices being visited
+in the priority queue and all the adjacent vertices
+being checked, uncomment the print statements in
+dijkstras.cpp.
+*/
+
 //Tests for weighted graph
 std::vector<std::vector<std::string>> data_1 = {
     {"1", "2", "50"},
