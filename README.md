@@ -15,6 +15,7 @@ The file I/O system makes use of two functions. The **file_to_vector** function 
 - - - -
 ## Breadth First Search (BFS)
 ### Files: BFS.h/cpp
+Create a BFS object using either the constructor that takes a vector of vertices and a starting point or the constructor that takes a vector of vertices, a starting point, and a vector of edges. One acn add edges using ***addEdge*** and inputting either two vertices or an Edge. You can then either use ***nextVertex*** if you want to traverse one vertex at a time, or you could run ***start*** to run the full aglorithm.
 - - - -
 ## Dijkstra's Implementation
 ### Files: dijkstras.h/cpp
