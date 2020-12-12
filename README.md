@@ -6,7 +6,7 @@ Our project looks at the musae-twitch dataset obtained from http://snap.stanford
 
 Our presentation video: https://mediaspace.illinois.edu/media/1_yxuh7zqk
 
-All testing and running of our code can be done within the individual test case files, located in the tests folder. The musae-twitch dataset, as well as other data used for testing, can be found in */tests/data*. To run our test cases, use **make test**, then do **./test [stuff]**, with stuff replaced with *fileio*, *BFS*, *dijkstras*, or *landmark*.
+All testing and running of our code can be done within the individual test case files, located in the tests folder. The musae-twitch dataset, as well as other data used for testing, can be found in */tests/data*. To run our test cases, do **module load llvm/6.0.1**, then use **make test**, then do **./test [stuff]**, with stuff replaced with *fileio*, *BFS*, *dijkstras*, or *landmark*.
 - - - -
 ## Fileio
 ### Files: fileio.h/cpp
