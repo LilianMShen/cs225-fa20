@@ -22,3 +22,4 @@ IMPORTANT: The dataset we used is unweighted. If you want to test for weighted g
 - - - -
 ## Landmark Path Implementation
 ### Files: landmark.h/cpp
+Similar to Djikstra's, create a Landmark object using the constructor and use the fileio namespace to input data and generate a graph. Make use of the **runLandmarkPath** method to run the algorithm and get back a path of edges stored in a vector of Edge objects. The test cases included have examples of usage, testing for the generation of the graph and path generation. 
