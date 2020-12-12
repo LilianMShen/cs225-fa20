@@ -10,6 +10,8 @@ All testing and running of our code can be done within the individual test case 
 - - - -
 ## Fileio
 ### Files: fileio.h/cpp
+
+The file I/O system makes use of two functions. The **file_to_vector** function takes in a file and extracts each line from it into a vector of strings. The **csv_to_tokens** takes a vector of strings and tokenizes them by a comma delimiter, meaning it is completely compatible with CSV type data. Its usage is in other source files, where the namespace fileio contains the two functions and is used to parse the graph data into vertex and edge data.
 - - - -
 ## Breadth First Search (BFS)
 ### Files: BFS.h/cpp
